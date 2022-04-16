@@ -15,7 +15,7 @@ import "./interfaces/IDiamondCut.sol";
 import "./interfaces/IERC173.sol";
 import "./interfaces/IERC165.sol";
 
-contract Diamond {
+contract DynamicGame {
     // more arguments are added to this struct
     // this avoids stack too deep errors
     struct DiamondArgs {
@@ -44,7 +44,7 @@ contract Diamond {
             ds.slot := position
         }
         address facet = address(bytes20(ds.facetAddressAndSelectorPosition[msg.sig].facetAddress));
-        require(facet != address(0), "Diamond: Function does not exist");
+        require(facet != address(0), "DynamicGame: Function does not exist");
         assembly {
             calldatacopy(0, 0, calldatasize())
             let result := delegatecall(gas(), facet, 0, calldatasize(), 0, 0)
@@ -58,4 +58,9 @@ contract Diamond {
                 }
         }
     }
+
+    receive() external payable {
+        revert("DynamicGame: Does not accept ether");
+    }
+    
 }

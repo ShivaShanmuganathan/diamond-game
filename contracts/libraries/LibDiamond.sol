@@ -9,7 +9,7 @@ pragma experimental ABIEncoderV2;
 import "../interfaces/IDiamondCut.sol";
 
 library LibDiamond {
-    bytes32 constant DIAMOND_STORAGE_POSITION = keccak256("diamond.standard.diamond.storage");
+    bytes32 constant DIAMOND_STORAGE_POSITION = keccak256("Dynamic.NFT.Mini.Game.Diamond.Storage");
 
     struct FacetAddressAndSelectorPosition {
         address facetAddress;
